@@ -21,6 +21,11 @@ public class BubbleSort {
 		items.set(i,  items.get(j));
 		items.set(j, tmp);
 	}
+	
+	/**
+	 * Bubble Sort is done! And it is easy to do in-place.
+	 * @param input - the list to be sorted.
+	 */
 	public static void bubbleSort(List<Integer> input) {
 		int N = input.size();
 		

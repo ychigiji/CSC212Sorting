@@ -43,5 +43,7 @@ public class TestSorting {
 		Collections.shuffle(sortMe);
 		BubbleSort.bubbleSort(sortMe);
 		Assert.assertTrue(checkSorted(sortMe));
-	}	
+	}
+
+
 }

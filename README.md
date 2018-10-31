@@ -1,72 +1,55 @@
-# CSC212P6
-List Data Structures &amp; Testing
+# CSC212P7
+Sorting!
 
-## About P6
+## About P7
 
-### P6List Interface
-Recall that an interface in Java defines methods but not implementations. My P6List is a little easier to implement than Java's List and it's a little more specific for the data structures we learned. These 11 methods already have stubs in the starter code for this assignment for all data structures.
+We're going to focus on the mechanics of sorting here.
+Some algorithm descriptions are derived from [N. Howe's assignment on Sorting](http://www.cs.smith.edu/~nhowe/teaching/csc212/Assignments/sorting.php).
 
-```java
-public interface P6List<T> {
-  public T removeFront();
-  public T removeBack();
-  public T removeIndex(int index);
-  
-  public void addFront(T item);
-  public void addBack(T item);
-  public void addIndex(T item, int index);
+## Rubric (100)
 
-  public T getFront();
-  public T getBack();
-  public T getIndex(int index);
-
-  public int size();
-  public boolean isEmpty();
-}
-```
-
-### Errors:
-
-Where appropriate, you should throw my error classes instead of ``NullPointerException``s or ``ArrayIndexOutOfBoundsException``s. It is good programming practice to not expose those to your users, and it also demonstrates that you're reasoning about your code and its failure cases.
-
-I provide errors for:
-- ``P6NotImplemented``, so I can quickly tell if you have not changed the starter code in a particular case. You will be deleting these errors, not adding them.
-- ``EmptyListError``, when a remove or get operation is called on an empty list.
-- ``BadIndexError``, when a getIndex, addIndex or removeIndex operation is called with an index that does not exist.
-- ``RanOutOfSpaceError``, when an add method fails on a ``FixedSizeList``.
-
-Prefer the most precise error: ``EmptyListError`` rather than a ``BadIndexError`` when looking for the 5th thing in an empty list.
-
-### Test Code
-
-Writing good test code is likely to be redundant. This is OK, as it is a stylistic (opinion) choice.
-I have provided good test cases for most of FixedSizeList. In Lab, we will focus on getting the code-coverage of FixedSizeList to 100%.
-
-## Rubric (115)
-
-Note that the maximum here is lower than usual. This assignment has many sections where you are implementing what was discussed in class, and therefore has far less room for interpretation and extra-credit work.
-
-In some ways this assignment is much easier than past assignments. In other ways, it is much more difficult. Do not leave it until the last minute.
+This assignment is a little smaller than usual and the maximum is only 100 points.
 
 ### (30) Reflection, Code Compiles and Tests Run.
 
 It is very important your code compiles and you do not change the directory structure. If you have issues importing the code into Eclipse, let me know and we can fix it together. I plan to grade these as automatically as possible.
 
-### (0) Tests
 
-I will not be grading your tests, but you must pass all of my tests.
+### (20) Simple Sorts
 
-### (10) GrowableList
-This is newer, but I have completed part of the implementation for you.
+These are sorts that have quite short descriptions.
 
-### (10) SinglyLinkedList
-We did a variation on this in Lab last week (where e.g., remove did not crash on an empty list). However, we have covered singly-linked lists in great detail.
+#### (10) Selection Sort
 
-### (20) DoublyLinkedList
-Getting this right can be very tricky, even with tests. You may refer to [algorithmic pseudocode, if you cite it](https://en.wikipedia.org/wiki/Doubly_linked_list).
+Selection Sort works by finding the minimum value in the list and bringing it to the front, over and over. This is one of the simplest sorting algorithms.
 
-### (Max: 25) Efficiency Annotations.
-Comment the methods in ``FixedSizeList``, ``GrowableList``, ``SinglyLinkedList``, ``DoublyLinkedList`` and ``ChunkyLinkedList`` with their big-O efficiency, where O(n) is the size of the list.
+> Until unsorted is empty, scan it for the smallest remaining element. Remove that element from unsorted and add it to the tail of sorted. (One way to do this: Loop through all the nodes, keeping the index of the smallest element seen so far as you continue to scan through the list, then remove that element by index. Another way: avoid using an index by actually pulling out the smallest element seen so far, and then swapping it back in if and when you encounter a smaller one. Yet another: use two iterators, one to traverse the loop element by element and the other to hold the place of the smallest element seen so far, so you get a stable sort.)
 
-### (20) ChunkyLinkedList
-This is a data structure described in the comments and in the partial code given. Work on this after you have implemented ``SinglyLinkedList`` for reasons that will become obvious.
+#### (10) Insertion Sort
+
+Insertion Sort works by building up a list one at a time, and inserting it into the right point. Some bonus points may be available for using binary search to insert, but it can be done with linear search as well. 
+
+> Until unsorted is empty, take the first element off it and find the point where it should go in sorted (the point where all previous elements are smaller, and all following elements are equal to or greater than). Insert it into sorted at this point.
+
+
+### (30) Merge Sort
+
+Merge sort is an important sorting algorithm. We will explore the recursive and iterative solutions in this assignment.
+
+#### (10) Merge Sorted Lists into a Longer, Sorted List
+
+To merge two sorted lists into a single sorted list, look at the first element in each list. Take the smaller of the two off the front of its old list and put it at the end of the new (merged) list. Repeat this until both one of the old lists is empty, at which point you can append the remainder of the other original list to the new list. If the original lists were sorted, and you always take the smallest element available, then the resulting list will also be sorted. (You might want to convince yourself of this fact before continuing.)
+
+#### (10) Recursive MergeSort
+
+Use recursion to break down the list into pieces and build it back up. Split the list in half until there are only tiny lists that remain.
+
+#### (10) Iterative MergeSort
+
+Begin by placing each element of the original list into a new singleton list. You may store all the singleton lists in a list of lists.
+
+While more than one list remains, take the first two lists from your work queue and merge them, preserving the sorted order. Put the result back at the end of the work queue.
+
+### (20) MergeSort with P6 Doubly-Linked List.
+
+Take your implementation of the Doubly-Linked List from P6 and implement MergeSort using that interface. Partial credit will be given for a solution that uses an alternate list from P6.
