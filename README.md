@@ -1,10 +1,13 @@
 # CSC212P7
-Sorting!
+
+Sorting! In this assignment, you have little starter code. I have provided an implementation of BubbleSort (from class) and isSorted in a single test file. You do not need separate test files for each sorting algorithm, although you can do so.
+
+Although we discussed Comparable and Comparator in class, your sorting algorithms here need only work on ``List<Integer>``, like the provided bubbleSort. No signatures are provided. You will have to decide whether your sorting algorithm modifies a list (easy in BubbleSort) or returns a new list (much easier for MergeSort). Therefore, copying the BubbleSort test directly will not help you with MergeSort -- you'll have to deal with the fact that your mergesort will be returning a new ``List<Integer>`` to you.
 
 ## About P7
 
 We're going to focus on the mechanics of sorting here.
-Some algorithm descriptions are derived from [N. Howe's assignment on Sorting](http://www.cs.smith.edu/~nhowe/teaching/csc212/Assignments/sorting.php).
+Some algorithm descriptions are derived from [N. Howe's assignment on Sorting](http://www.cs.smith.edu/~nhowe/teaching/csc212/Assignments/sorting.php). So you have these textual descriptions in addition to the slides.
 
 ## Rubric (100)
 
@@ -52,4 +55,27 @@ While more than one list remains, take the first two lists from your work queue 
 
 ### (20) MergeSort with P6 Doubly-Linked List.
 
-Take your implementation of the Doubly-Linked List from P6 and implement MergeSort using that interface. Partial credit will be given for a solution that uses an alternate list from P6.
+Take your implementation of the Doubly-Linked List from P6 and implement MergeSort using that interface. Partial credit will be given for a solution that uses an alternate list from P6. Partial credit will be given for only using it for the partial parts of MergeSort. Think about how you will split lists in half (for the recursive method) -- a new functionality for DoublyLinkedList for this assignment. The iterative method does not have this requirement.
+
+Suggested edits to DoublyLinkedList from P6 for unit-testing:
+
+```java
+       // For unit tests, List<T> supports equals, but P6List<T> does not.
+       public List<T> copyToList() {
+               ArrayList<T> output = new ArrayList<T>();
+               for (Node<T> n = this.start; n != null; n = n.after) {
+                       output.add(n.value);
+               }
+               return output;
+       }
+       
+       // If you treat your DoublyLinkedList<T> like a queue with pop() as removeFront(), you are destroying the lists.
+       // This may also be helpful for unit-testing.
+       public DoublyLinkedList<T> copy() {
+               DoublyLinkedList<T> output = new DoublyLinkedList<T>();
+               for (Node<T> n = this.start; n != null; n = n.after) {
+                       output.addBack(n.value);
+               }
+               return output;
+       }
+```
