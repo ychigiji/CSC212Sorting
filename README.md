@@ -56,3 +56,26 @@ While more than one list remains, take the first two lists from your work queue 
 ### (20) MergeSort with P6 Doubly-Linked List.
 
 Take your implementation of the Doubly-Linked List from P6 and implement MergeSort using that interface. Partial credit will be given for a solution that uses an alternate list from P6. Partial credit will be given for only using it for the partial parts of MergeSort. Think about how you will split lists in half (for the recursive method) -- a new functionality for DoublyLinkedList for this assignment. The iterative method does not have this requirement.
+
+Suggested edits to DoublyLinkedList from P6 for unit-testing:
+
+```java
+       // For unit tests, List<T> supports equals, but P6List<T> does not.
+       public List<T> copyToList() {
+               ArrayList<T> output = new ArrayList<T>();
+               for (Node<T> n = this.start; n != null; n = n.after) {
+                       output.add(n.value);
+               }
+               return output;
+       }
+       
+       // If you treat your DoublyLinkedList<T> like a queue with pop() as removeFront(), you are destroying the lists.
+       // This may also be helpful for unit-testing.
+       public DoublyLinkedList<T> copy() {
+               DoublyLinkedList<T> output = new DoublyLinkedList<T>();
+               for (Node<T> n = this.start; n != null; n = n.after) {
+                       output.addBack(n.value);
+               }
+               return output;
+       }
+```
