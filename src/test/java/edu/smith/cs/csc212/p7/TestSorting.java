@@ -16,7 +16,7 @@ public class TestSorting {
 	 */
 	private static boolean checkSorted(List<Integer> items) {
 		for (int i=0; i<items.size()-1; i++) {
-			if (items.get(i) >= items.get(i+1)) {
+			if (items.get(i) > items.get(i+1)) {
 				System.err.println("items out of order: "+items.get(i)+", "+items.get(i+1) + " at index="+i);
 				return false;
 			}
@@ -41,6 +41,16 @@ public class TestSorting {
 		
 		// For good measure, let's shuffle it and sort it again to see if that works, too.
 		Collections.shuffle(sortMe);
+		BubbleSort.bubbleSort(sortMe);
+		Assert.assertTrue(checkSorted(sortMe));
+	}
+	
+	@Test
+	public void testClassBubbleSort() {
+		// See if the data can be reversed:
+		ArrayList<Integer> sortMe = new ArrayList<>();
+		sortMe.addAll(Arrays.asList(35, 88, 11, 47, 14, 24, 41, 62, 27));
+		
 		BubbleSort.bubbleSort(sortMe);
 		Assert.assertTrue(checkSorted(sortMe));
 	}
