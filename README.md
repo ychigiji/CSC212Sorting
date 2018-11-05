@@ -2,7 +2,7 @@
 
 Sorting! In this assignment, you have little starter code. I have provided an implementation of BubbleSort (from class) and isSorted in a single test file. You do not need separate test files for each sorting algorithm, although you can do so.
 
-Although we discussed Comparable and Comparator in class, your sorting algorithms here need only work on List<Integer>, like the provided bubbleSort. No signatures are provided. You will have to decide whether your sorting algorithm modifies a list (easy in BubbleSort) or returns a new list (much easier for MergeSort). Therefore, copying the BubbleSort test directly will not help you with MergeSort -- you'll have to deal with the fact that your mergesort will be returning a new List to you.
+Although we discussed Comparable and Comparator in class, your sorting algorithms here need only work on ``List<Integer>``, like the provided bubbleSort. No signatures are provided. You will have to decide whether your sorting algorithm modifies a list (easy in BubbleSort) or returns a new list (much easier for MergeSort). Therefore, copying the BubbleSort test directly will not help you with MergeSort -- you'll have to deal with the fact that your mergesort will be returning a new ``List<Integer>`` to you.
 
 ## About P7
 
