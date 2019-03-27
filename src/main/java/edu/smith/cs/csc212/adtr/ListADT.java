@@ -212,4 +212,22 @@ public abstract class ListADT<ItemType> implements Iterable<ItemType> {
 			this.swap(i, j);
 		}
 	}
+	
+	/**
+	 * Make a copy of this list!
+	 * @return the cloned list.
+	 */
+	public ListADT<ItemType> slice(int start, int end) {
+		return new ListSlice<>(this, start, end);
+	}
+	
+	/**
+	 * Add many things to this list.
+	 * @param other - the list to copy from.
+	 */
+	public void addAll(ListADT<ItemType> other) {
+		for (ItemType t : other) {
+			this.addBack(t);
+		}
+	}
 }

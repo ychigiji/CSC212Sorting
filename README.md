@@ -2,7 +2,7 @@
 
 Sorting! In this assignment, you have little starter code. I have provided an implementation of BubbleSort (from class) and isSorted in a single test file. You do not need separate test files for each sorting algorithm, although you can do so.
 
-Although we discussed Comparable and Comparator in class, your sorting algorithms here need only work on ``List<Integer>``, like the provided bubbleSort. No signatures are provided. You will have to decide whether your sorting algorithm modifies a list (easy in BubbleSort) or returns a new list (much easier for MergeSort). Therefore, copying the BubbleSort test directly will not help you with MergeSort -- you'll have to deal with the fact that your mergesort will be returning a new ``List<Integer>`` to you.
+Although we discussed Comparable and Comparator in class, your sorting algorithms here need only work on ``ListADT<Integer>``, like the provided bubbleSort. No signatures are provided. You will have to decide whether your sorting algorithm modifies a list (easy in BubbleSort) or returns a new list (much easier for MergeSort). Therefore, copying the BubbleSort test directly will not help you with MergeSort -- you'll have to deal with the fact that your mergesort will be returning a new ``ListADT<Integer>`` to you.
 
 ## About P7
 
@@ -16,7 +16,6 @@ This assignment is a little smaller than usual and the maximum is only 100 point
 ### (30) Reflection, Code Compiles and Tests Run.
 
 It is very important your code compiles and you do not change the directory structure. If you have issues importing the code into Eclipse, let me know and we can fix it together. I plan to grade these as automatically as possible.
-
 
 ### (20) Simple Sorts
 
@@ -47,35 +46,21 @@ To merge two sorted lists into a single sorted list, look at the first element i
 
 Use recursion to break down the list into pieces and build it back up. Split the list in half until there are only tiny lists that remain.
 
+Note two of the new methods on ``ListADT``: ``slice`` and ``addAll`` that can help you make a copy of a part of a list.
+
 #### (10) Iterative MergeSort
 
 Begin by placing each element of the original list into a new singleton list. You may store all the singleton lists in a list of lists.
 
+How do you make a list of one element?
+
 While more than one list remains, take the first two lists from your work queue and merge them, preserving the sorted order. Put the result back at the end of the work queue.
 
-### (20) MergeSort with P6 Doubly-Linked List.
+### (20) Unit Testing your Sorts!
 
-Take your implementation of the Doubly-Linked List from P6 and implement MergeSort using that interface. Partial credit will be given for a solution that uses an alternate list from P6. Partial credit will be given for only using it for the partial parts of MergeSort. Think about how you will split lists in half (for the recursive method) -- a new functionality for DoublyLinkedList for this assignment. The iterative method does not have this requirement.
+I have provided some simple tests for BubbleSort. While implementing these sorting algorithms from pseudocode and descriptions, you will need to test your implementations. Testing will require you to think of how the sorts work from a user perspective:
 
-Suggested edits to DoublyLinkedList from P6 for unit-testing:
+Which sorts change a list in place? Which sorts a list and returns a copy? You will need to change tests slightly to accomodate.
 
-```java
-       // For unit tests, List<T> supports equals, but P6List<T> does not.
-       public List<T> copyToList() {
-               ArrayList<T> output = new ArrayList<T>();
-               for (Node<T> n = this.start; n != null; n = n.after) {
-                       output.add(n.value);
-               }
-               return output;
-       }
-       
-       // If you treat your DoublyLinkedList<T> like a queue with pop() as removeFront(), you are destroying the lists.
-       // This may also be helpful for unit-testing.
-       public DoublyLinkedList<T> copy() {
-               DoublyLinkedList<T> output = new DoublyLinkedList<T>();
-               for (Node<T> n = this.start; n != null; n = n.after) {
-                       output.addBack(n.value);
-               }
-               return output;
-       }
-```
+Note the addition of ``ListADT.shuffle``. 
+
