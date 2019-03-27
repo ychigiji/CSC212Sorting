@@ -38,9 +38,9 @@ Insertion Sort works by building up a list one at a time, and inserting it into 
 
 Merge sort is an important sorting algorithm. We will explore the recursive and iterative solutions in this assignment.
 
-#### (10) Merge Sorted Lists into a Longer, Sorted List
+#### (10) combine helper method
 
-To merge two sorted lists into a single sorted list, look at the first element in each list. Take the smaller of the two off the front of its old list and put it at the end of the new (merged) list. Repeat this until both one of the old lists is empty, at which point you can append the remainder of the other original list to the new list. If the original lists were sorted, and you always take the smallest element available, then the resulting list will also be sorted. (You might want to convince yourself of this fact before continuing.)
+To merge two sorted lists into a single sorted list, look at the first element in each list. Take the smaller of the two off the front of its old list and put it at the end of the new (merged) list. Repeat this until both one of the old lists is empty, at which point you can append the remainder of the other original list to the new list. If the original lists were sorted, and you always take the smallest element available, then the resulting list will also be sorted. 
 
 #### (10) Recursive MergeSort
 
