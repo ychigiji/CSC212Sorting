@@ -56,7 +56,11 @@ How do you make a list of one element?
 
 While more than one list remains, take the first two lists from your work queue and merge them, preserving the sorted order. Put the result back at the end of the work queue.
 
-### (20) Unit Testing your Sorts!
+### (5) Make sure your MergeSort uses DoublyLinkedList where appropriate.
+
+We discussed how the work queue should probably be a DLL.
+
+### (15) Unit Testing your Sorts!
 
 I have provided some simple tests for BubbleSort. While implementing these sorting algorithms from pseudocode and descriptions, you will need to test your implementations. Testing will require you to think of how the sorts work from a user perspective:
 
