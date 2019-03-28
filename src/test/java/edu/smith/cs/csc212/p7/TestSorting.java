@@ -46,6 +46,9 @@ public class TestSorting {
 		System.out.println(sortMe.toJava());
 		BubbleSort.bubbleSort(sortMe);
 		Assert.assertTrue(checkSorted(sortMe));
+		
+		// check it is the original size
+		Assert.assertEquals(sortMe.size(), data.length);
 	}
 	
 	@Test
@@ -55,6 +58,26 @@ public class TestSorting {
 		
 		BubbleSort.bubbleSort(sortMe);
 		Assert.assertTrue(checkSorted(sortMe));
+		
+		// check it is the original size
+		Assert.assertEquals(sortMe.size(), 9);
+
+	}
+	
+	@Test
+	public void testSlice() {
+		ListADT<Integer> sortMe = new JavaList<>(Arrays.asList(35, 88, 11, 47, 14, 24, 41, 62, 27));
+		int mid = sortMe.size()/2;
+		ListADT<Integer> leftSlice = sortMe.slice(0, mid);
+		ListADT<Integer> rightSlice = sortMe.slice(mid, sortMe.size());
+		
+		Assert.assertEquals(leftSlice.toJava(), Arrays.asList(35, 88, 11, 47));
+		Assert.assertEquals(rightSlice.toJava(), Arrays.asList(14, 24, 41, 62, 27));
+		
+		Assert.assertEquals(14, (int) rightSlice.removeFront());
+		Assert.assertEquals(4, rightSlice.size());
+		Assert.assertEquals(27, (int) rightSlice.removeBack());
+		Assert.assertEquals(3, rightSlice.size());
 	}
 
 
