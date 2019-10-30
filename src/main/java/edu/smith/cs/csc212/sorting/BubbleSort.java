@@ -1,6 +1,6 @@
-package edu.smith.cs.csc212.p7;
+package edu.smith.cs.csc212.sorting;
 
-import edu.smith.cs.csc212.adtr.ListADT;
+import me.jjfoley.adt.ListADT;
 
 /**
  * BubbleSort is a simple sort that is O(n^2).
@@ -8,6 +8,12 @@ import edu.smith.cs.csc212.adtr.ListADT;
  *
  */
 public class BubbleSort {
+	
+	static <T> void swap(ListADT<T> list, int i, int j) {
+		T tmp = list.getIndex(i);
+		list.setIndex(i, list.getIndex(j));
+		list.setIndex(j, tmp);
+	}
 
 	/**
 	 * Bubble Sort is done! And it is easy to do in-place.
@@ -20,7 +26,7 @@ public class BubbleSort {
 			boolean sorted = true;
 			for (int i=0; i<N-1; i++) {
 				if (input.getIndex(i) > input.getIndex(i+1)) {
-					input.swap(i, i+1);
+					swap(input, i, i+1);
 					sorted = false;
 				}
 			}
