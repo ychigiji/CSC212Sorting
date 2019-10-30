@@ -31,7 +31,7 @@
 
     <dependency>
       <groupId>com.github.jjfiv</groupId>
-      <artifactId>CSC212ADT</artifactId>
+      <artifactId>csc212adt</artifactId>
       <version>1.2</version>
     </dependency>
 

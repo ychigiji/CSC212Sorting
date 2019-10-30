@@ -25,7 +25,7 @@ public class BubbleSortTest {
 		
 		Random rand = new Random(13);
 		// For good measure, let's shuffle it and sort it again to see if that works, too.
-		SortTestingHelpers.shuffle(sortMe, rand);
+		sortMe.shuffle(rand);
 		BubbleSort.sort(sortMe);
 		Assert.assertTrue(SortTestingHelpers.checkSorted(sortMe, SortTestingHelpers.data.length));
 		

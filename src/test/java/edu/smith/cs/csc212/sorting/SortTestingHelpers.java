@@ -46,11 +46,4 @@ public class SortTestingHelpers {
 		}
 		return sortMe;
 	}
-
-	static <T> void shuffle(ListADT<T> list, Random rand) {
-		for (int i=list.size()-1; i>=1; i--) {
-			int j = rand.nextInt(i+1);
-			BubbleSort.swap(list, i, j);
-		}
-	}
 }

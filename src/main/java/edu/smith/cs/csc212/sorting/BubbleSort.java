@@ -8,13 +8,6 @@ import me.jjfoley.adt.ListADT;
  *
  */
 public class BubbleSort {
-	
-	static <T> void swap(ListADT<T> list, int i, int j) {
-		T tmp = list.getIndex(i);
-		list.setIndex(i, list.getIndex(j));
-		list.setIndex(j, tmp);
-	}
-
 	/**
 	 * Bubble Sort is done! And it is easy to do in-place (without creating a new list!)
 	 * @param input - the list to be sorted.
@@ -26,7 +19,7 @@ public class BubbleSort {
 			boolean sorted = true;
 			for (int i=0; i<N-1; i++) {
 				if (input.getIndex(i) > input.getIndex(i+1)) {
-					swap(input, i, i+1);
+					input.swap(i, i+1);
 					sorted = false;
 				}
 			}
