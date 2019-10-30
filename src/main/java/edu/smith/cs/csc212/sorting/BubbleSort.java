@@ -16,10 +16,10 @@ public class BubbleSort {
 	}
 
 	/**
-	 * Bubble Sort is done! And it is easy to do in-place.
+	 * Bubble Sort is done! And it is easy to do in-place (without creating a new list!)
 	 * @param input - the list to be sorted.
 	 */
-	public static void bubbleSort(ListADT<Integer> input) {
+	public static void sort(ListADT<Integer> input) {
 		int N = input.size();
 		
 		while(true) {

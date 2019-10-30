@@ -12,53 +12,25 @@ import me.jjfoley.adt.ListADT;
 import me.jjfoley.adt.impl.JavaList;
 
 @SuppressWarnings("javadoc")
-public class TestSorting {
-	/**
-	 * This is useful for testing whether sort algorithms work!
-	 * @param items - the list of integers.
-	 * @return true if it is sorted, false if not.
-	 */
-	private static boolean checkSorted(ListADT<Integer> items, int originalSize) {
-		Assert.assertEquals(originalSize, items.size());
-		for (int i=0; i<items.size()-1; i++) {
-			if (items.getIndex(i) > items.getIndex(i+1)) {
-				System.err.println("items out of order: "+items.getIndex(i)+", "+items.getIndex(i+1) + " at index="+i);
-				return false;
-			}
-		}
-		return true;
-	}
-	
-	/**
-	 * Here's some data!
-	 */
-	private static int[] data = {9,8,7,6,5,4,4,3,2,1};
-	
-	private static <T> void shuffle(ListADT<T> list, Random rand) {
-		for (int i=list.size()-1; i>=1; i--) {
-			int j = rand.nextInt(i+1);
-			BubbleSort.swap(list, i, j);
-		}
-	}
-	
+public class BubbleSortTest {
 	@Test
 	public void testBubbleSort() {
 		// See if the data can be reversed:
 		ListADT<Integer> sortMe = new JavaList<>();
-		for (int y : data) {
+		for (int y : SortTestingHelpers.data) {
 			sortMe.addBack(y);
 		}
-		BubbleSort.bubbleSort(sortMe);
-		Assert.assertTrue(checkSorted(sortMe, data.length));
+		BubbleSort.sort(sortMe);
+		Assert.assertTrue(SortTestingHelpers.checkSorted(sortMe, SortTestingHelpers.data.length));
 		
 		Random rand = new Random(13);
 		// For good measure, let's shuffle it and sort it again to see if that works, too.
-		shuffle(sortMe, rand);
-		BubbleSort.bubbleSort(sortMe);
-		Assert.assertTrue(checkSorted(sortMe, data.length));
+		SortTestingHelpers.shuffle(sortMe, rand);
+		BubbleSort.sort(sortMe);
+		Assert.assertTrue(SortTestingHelpers.checkSorted(sortMe, SortTestingHelpers.data.length));
 		
 		// check it is the original size
-		Assert.assertEquals(sortMe.size(), data.length);
+		Assert.assertEquals(sortMe.size(), SortTestingHelpers.data.length);
 	}
 	
 	@Test
@@ -67,8 +39,8 @@ public class TestSorting {
 		List<Integer> data = Arrays.asList(35, 88, 11, 47, 14, 24, 41, 62, 27);
 		ListADT<Integer> sortMe = new JavaList<>(data);
 		
-		BubbleSort.bubbleSort(sortMe);
-		Assert.assertTrue(checkSorted(sortMe, data.size()));
+		BubbleSort.sort(sortMe);
+		Assert.assertTrue(SortTestingHelpers.checkSorted(sortMe, data.size()));
 		
 		// check it is the original size
 		Assert.assertEquals(sortMe.size(), 9);
@@ -77,6 +49,8 @@ public class TestSorting {
 	
 	@Test
 	public void testSlice() {
+		// This test is for me: testing that slicing given in the starter code works.
+		
 		ListADT<Integer> sortMe = new JavaList<>(Arrays.asList(35, 88, 11, 47, 14, 24, 41, 62, 27));
 		int mid = sortMe.size()/2;
 		ListADT<Integer> leftSlice = sortMe.slice(0, mid);
